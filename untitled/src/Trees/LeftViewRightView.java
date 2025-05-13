@@ -1,5 +1,6 @@
 package Trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -65,6 +66,29 @@ public class LeftViewRightView {
                 isPrinted = false;
             }
         }
+    }
+    public static ArrayList<Integer> leftViewOptimzed(TreeNode root){
+        if(root == null)
+         return new ArrayList<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            for(int i = 0 ; i < q.size();i++){
+                TreeNode curr = q.poll();
+                if(i == 0){
+                    res.add(curr.val);
+                }
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+        }
+        return res; 
+        
     }
     public static void main(String[] args) {
         String[] tree = {"3", "5", "1", "6", "7", "4", "2", "null", "null", "null", "null", "null", "null", "9", "8"};
